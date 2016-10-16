@@ -20,7 +20,13 @@ gulp.task('copy', function (cb) {
 });
 
 gulp.task('minify-css', function() {
-  return gulp.src(['node_modules/chico/dist/ui/chico.min.css','assets/less/*.less'])
+  return gulp.src(
+  			[
+	  			'node_modules/chico/dist/ui/chico.min.css',
+	  			//'../../node_modules/chico/src/ui/styles/ui-theme.scss'
+	  			'assets/less/*.less'
+  			]
+		)
   	.pipe(less())
   	.pipe(autoprefixer({
         browsers: ['last 2 versions'],
