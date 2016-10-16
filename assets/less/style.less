@@ -1,3 +1,8 @@
+@white: #fff;
+@gray: #dedede;
+@green: #699456;
+@blue: #2C639D;
+
 section{
 	width:800px;
 	height:auto;
@@ -5,18 +10,30 @@ section{
 	padding:20px;
 	overflow:hidden;
 	box-sizing:border-box;
-	border:1px solid #000;
+	border:1px solid @gray;
+
+	header {
+		margin-bottom: 25px;
+	}
 
 	.column-1 {
-		width:400px;
-		height:auto;
+		width: 50%;
+		height:330px;
 		float:left;
 	}
 	
 	.column-2 {
-		width:300px;
-		height:auto;
+		width: 50%;
+		height:330px;
 		float:left;
+
+		.ch-price {
+			font-size: 2em;
+
+			sup {
+				font-size: .5em;
+			}
+		}
 			
 		.ch-form-row {
 			fieldset {
@@ -30,11 +47,102 @@ section{
 		.ch-btn {
 			margin-top:10px;
 		}
+
+		.gallery {
+			margin-top: 20px;
+		}
+
+		.ch-carousel {
+			overflow: hidden;
+		}
 	}
 
 	.description {
 		width:100%;
 		height:auto;
 		overflow:hidden;
+		margin-top: 10px;
+		padding-top: 30px;
+		border-top: 1px solid @gray;
+
+		.tabs-description {
+			width: 100%;
+		    min-height: 200px;
+		    position: relative;
+		    margin-top: 35px;    
+		    background: @white;
+
+		    .tab {
+		        float: left;
+
+		        label {
+		            top: -28px;
+		            left: 1px;
+		            position: relative;
+		            margin-left: 5px;
+		            padding: 10px;            
+		            border: 1px solid @gray;
+		            border-bottom: none;
+		            background: @gray;
+		            overflow: hidden;
+		             cursor: pointer;
+		        }
+
+		        .content {            
+		            top: -1px;
+		            bottom: 0;
+		            right: 0;            
+		            left: 0;
+		            opacity: 0;
+		            position: absolute;
+		            padding: 15px;            
+		            border: 1px solid @gray;
+
+		            .question{
+						margin-bottom: 10px;
+
+						.byer {
+							color: @blue;
+							font-weight: bold;
+						}
+
+						.seller {
+							color: @green;
+							font-weight: bold;
+						}
+
+						.question-byer{
+							margin-top: 0;
+							padding: 10px;
+							background-color: #CFE2FC;
+							color: @blue;
+						}
+
+						.question-seller{
+							margin-top: 0;
+							padding: 10px;
+							background-color: #DBEBD4;
+							color: @green;
+						}
+					}
+		        }
+
+		        [type=radio] {
+		            display: none;
+		        }
+
+		        [type=radio]:checked ~ label {
+		            z-index: 2;
+		            border-bottom: 2px solid @white;
+		            background: @white;
+		            cursor: default;
+		        }
+
+		        [type=radio]:checked ~ label ~ .content {
+		            z-index: 1;
+		            opacity: 1;
+		        }
+		    }
+		}
 	}
 }
