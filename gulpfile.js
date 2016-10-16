@@ -6,6 +6,7 @@ var concat = require('gulp-concat');
 var imagemin = require('gulp-imagemin');
 var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
+var copy = require('copy');
 var watch = require('gulp-watch');
 
 gulp.task('minify', function() {
@@ -14,8 +15,12 @@ gulp.task('minify', function() {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('copy', function (cb) {
+  copy('./node_modules/chico/dist/assets/*', 'dist/assets', cb);
+});
+
 gulp.task('minify-css', function() {
-  return gulp.src('assets/less/*.less')
+  return gulp.src(['node_modules/chico/dist/ui/chico.min.css','assets/less/*.less'])
   	.pipe(less())
   	.pipe(autoprefixer({
         browsers: ['last 2 versions'],
@@ -27,16 +32,10 @@ gulp.task('minify-css', function() {
 });
 
 gulp.task( 'compress', function () {
-	return gulp.src('assets/js/*.js')
+	return gulp.src(['node_modules/chico/dist/ui/chico.min.js','assets/js/*.js'])
 	.pipe(concat('script.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
-});
-
-gulp.task( 'minify-image', function () {
-	return gulp.src('assets/images/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('dist/images'))
 });
 
 gulp.task( 'minify-image', function () {
@@ -51,5 +50,3 @@ gulp.task('watch', function() {
  gulp.watch('assets/images/*', ['minify-image']);
  gulp.watch('assets/*.html', ['minify']);
 });
-
-
